@@ -6,9 +6,9 @@ export function SignUp () {
     const [ username, setUsername ] = useState()
     const [ password, setPassword ] = useState()
 
-    async function handleSubmit(e){
+    const handleSubmit = (e) => {
         e.preventDefault()
-        let response = await fetch(`${BASE_URL}/users`, {
+        fetch(`${BASE_URL}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,16 +18,13 @@ export function SignUp () {
                 username: username,
                 password: password
             })
-
-        })
-        let { success } = await response.json()
-        if(success){
-            console.log(response)
-        }
+        }).then(response => response.json())
+          .then(data => console.log(data))
     }
 
     return(
         <div>
+            <h3>Sign Up</h3>
             <form onSubmit={e => handleSubmit(e)}>
                 <label>
                     Username:
