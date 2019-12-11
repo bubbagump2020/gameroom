@@ -1,18 +1,12 @@
 class UsersController < ApplicationController
+    respond_to :json
 
     def index
-        @users = User.all
-        render json: @users
+        respond_with User.all
     end
 
     def create
-        @user = User.new(user_params)
-        if @user.save
-            render json: @user
-        else
-            render json: { errors: @user.errors.full_messages }
-        end
-
+        respond_with User.create(user_params)
     end
 
     private

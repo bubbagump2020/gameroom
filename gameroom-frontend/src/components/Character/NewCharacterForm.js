@@ -1,9 +1,12 @@
 import React from 'react'
+import { Container, Form, Button, Col, Row } from 'react-bootstrap'
 
 export function NewCharacterForm(){
     return(
-        <div>
-            <h1>New Character Form</h1>
-        </div>
+        <Container>
+            <Form>
+
+            </Form>
+        </Container>
     )
 }

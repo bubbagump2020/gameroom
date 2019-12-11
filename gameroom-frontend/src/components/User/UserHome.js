@@ -1,11 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Navbar } from '../Navbars/UserNavbar'
+import React, { useEffect } from 'react'
+import { Container} from 'react-bootstrap'
+import { SiteNavbar } from '../NavBar'
+import { useDispatch } from 'react-redux'
+import { storeUserId } from '../../redux/actions/index'
 
-export function UserHome(){
+export const UserHome = (props) => {
+
+    const dispatch = useDispatch
+    const user_path = props.history.location.pathname
+    const user_id = props.match.params.id
+    
+    // useEffect({
+        
+    // }, [])
 
     return(
-        <Navbar />
+        <Container fluid>
+            <SiteNavbar />
+        </Container>   
     )
 
 }
