@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BASE_URL } from '../../src/Constants'
+import { Container, Form, Button } from 'react-bootstrap'
 
 export function SignUp () {
 
@@ -23,19 +24,19 @@ export function SignUp () {
     }
 
     return(
-        <div>
+        <Container>
             <h3>Sign Up</h3>
-            <form onSubmit={e => handleSubmit(e)}>
-                <label>
-                    Username:
-                    <input type="text" onChange={e => setUsername(e.target.value)} />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+            <Form onSubmit={e => handleSubmit(e)}>
+                <Form.Group>
+                    <Form.Label>Username: </Form.Label>
+                    <Form.Control type="text" placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password: </Form.Label>
+                    <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
+                </Form.Group>
+                <Button type="submit">Sign Up</Button>
+            </Form>
+        </Container>
     )
 }

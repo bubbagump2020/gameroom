@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react'
-import { Container} from 'react-bootstrap'
-import { SiteNavbar } from '../NavBar'
-import { useDispatch } from 'react-redux'
-import { storeUserId } from '../../redux/actions/index'
+import React from 'react'
+import { Container, Nav} from 'react-bootstrap'
+import { useRouteMatch } from 'react-router-dom'
 
 export const UserHome = (props) => {
 
-    const dispatch = useDispatch
-    const user_path = props.history.location.pathname
-    const user_id = props.match.params.id
-    
-    // useEffect({
-        
-    // }, [])
+    let { url } = useRouteMatch()
+
+ 
 
     return(
         <Container fluid>
-            <SiteNavbar />
+            {console.log(url)}
+            <h1>User Page</h1>
+            <Nav>
+                <Nav.Item>
+                    <Nav.Link href={`${url}/characters`}>Characters</Nav.Link>
+                </Nav.Item>
+            </Nav>
         </Container>   
     )
 
