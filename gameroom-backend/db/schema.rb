@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2019_12_11_210444) do
     t.integer "character_level"
     t.string "character_race"
     t.string "character_class"
+    t.integer "str"
+    t.integer "dex"
+    t.integer "con"
+    t.integer "int"
+    t.integer "wis"
+    t.integer "cha"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_characters_on_user_id"

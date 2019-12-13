@@ -15,7 +15,19 @@ class CharactersController < ApplicationController
     private
 
     def character_params
-        params.permit(:user_id, :character_name, :character_class, :character_level, :character_race)
+        params.permit(
+            :user_id,
+            :character_name,
+            :character_class,
+            :character_level,
+            :character_race,
+            :str,
+            :dex,
+            :con,
+            :int,
+            :wis,
+            :cha
+        )
     end
 
 end

@@ -5,6 +5,7 @@ import { HomePage, Login } from './components/HomePage'
 import { UserHome } from './components/User/UserHome'
 import { CharacterCollection } from './components/Character/CharacterCollection'
 import { NewCharacterForm, EditCharacterForm } from './components/Character/CharacterForms'
+import { SignUp } from './components/SignUp';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
         <Route exact path="/users/:id" component={UserHome} />
         <Route exact path="/users/:id/characters" component={CharacterCollection} />
         <Route exact path="/users/:id/characters/new" component={NewCharacterForm} />

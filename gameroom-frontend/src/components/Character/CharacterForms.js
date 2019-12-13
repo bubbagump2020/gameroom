@@ -36,7 +36,13 @@ export const NewCharacterForm = (props) => {
                 character_name: character.character_name,
                 character_level: character.character_level,
                 character_race: character.character_race,
-                character_class: character.character_class
+                character_class: character.character_class,
+                str: character.strength,
+                dex: character.dexterity,
+                con: character.constitution,
+                int: character.intelligence,
+                wis: character.wisdom,
+                cha: character.charisma
             })
         })
     }
@@ -76,7 +82,7 @@ export const NewCharacterForm = (props) => {
                                 </Form.Control>
                             </Form.Group>
                         </Form.Row>
-                        {/* <Form.Row>
+                        <Form.Row>
                             <Form.Group as={Col}>
                                 <Form.Label>Strength {character.abilityScores.strength}</Form.Label>
                                 <Form.Control type="number" placeholder={character.abilityScores.strength} onChange={e => dispatch(strength(e.target.value))}/>
@@ -105,7 +111,7 @@ export const NewCharacterForm = (props) => {
                                     <Form.Label>Charisma {character.abilityScores.charisma}</Form.Label>
                                     <Form.Control type="number" placeholder={character.abilityScores.charisma} onChange={e => dispatch(charisma(e.target.value))}/>
                                 </Form.Group>
-                        </Form.Row> */}
+                        </Form.Row>
                         <Button type="submit">Create</Button>
                     </Form>
                 </Container>

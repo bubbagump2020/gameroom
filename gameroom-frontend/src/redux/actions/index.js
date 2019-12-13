@@ -27,7 +27,7 @@ export const strength = (payload) => {
 }
 
 export const dexterity = (payload) => {
-    return { type: WISDOM, payload }
+    return { type: DEXTERITY, payload }
 }
 
 export const constitution = (payload) => {
