@@ -1,26 +1,59 @@
-import React from 'react';
-import { Container } from 'react-bootstrap'
-import { Switch, Route } from 'react-router-dom'
-import { HomePage, Login } from './components/HomePage'
-import { UserHome } from './components/User/UserHome'
-import { CharacterCollection } from './components/Character/CharacterCollection'
-import { NewCharacterForm, EditCharacterForm } from './components/Character/CharacterForms'
-import { SignUp } from './components/SignUp';
+import React, { Component } from 'react';
+import axios from 'axios'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import HomePage from './components/Home/HomePage'
 
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoggedIn: false,
+      user: {}
+    }
+  }
 
-function App() {
-  return (
-    <Container fluid>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/users/:id" component={UserHome} />
-        <Route exact path="/users/:id/characters" component={CharacterCollection} />
-        <Route exact path="/users/:id/characters/new" component={NewCharacterForm} />
-      </Switch>
-    </Container>
-  );
+  loginStatus = () => {
+    axios.get('http://localhost:3001/logged_in', 
+   {withCredentials: true})
+    .then(response => {
+      if (response.data.logged_in) {
+        this.handleLogin(response)
+      } else {
+        this.handleLogout()
+      }
+    })
+    .catch(error => console.log('api errors:', error))
+  }
+
+  componentDidMount(){
+    return this.props.loginStatus ? this.redirect() : null
+  }
+
+  handleLogin = (data) => {
+    this.setState({
+      isLoggedIn: true,
+      user: data.user
+    })
+  }
+
+  handleLogout = (data) => {
+    this.setState({
+      isLoggedIn: false,
+      user: {}
+    })
+  }
+
+  render(){
+    return(
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
 export default App;

@@ -2,6 +2,7 @@ class CharactersController < ApplicationController
     respond_to :json
 
     def index
+        puts @current_user
         respond_with Character.all
     end
 
