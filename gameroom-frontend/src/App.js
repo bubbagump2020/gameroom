@@ -1,21 +1,59 @@
-import React from 'react';
-import { BrowserRouter, Route} from 'react-router-dom'
-import { SignUp } from './components/SignUp'
-import { Login } from './components/Login';
-import { UserHome } from './components/User/UserHome'
-import { NewCharacterForm } from './components/Character/NewCharacterForm'
+import React, { Component } from 'react';
+import axios from 'axios'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import HomePage from './components/Home/HomePage'
 
-function App() {
-  return (
-    <div className="App">
-    	<BrowserRouter>
-    		<Route exact path='/' component={Login} />
-    		<Route exact path='/' component={SignUp} />
-        <Route exact path='/users/:id' component={UserHome} />
-        <Route exact path='/characters/new' component={NewCharacterForm}/>
-    	</BrowserRouter>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoggedIn: false,
+      user: {}
+    }
+  }
+
+  loginStatus = () => {
+    axios.get('http://localhost:3001/logged_in', 
+   {withCredentials: true})
+    .then(response => {
+      if (response.data.logged_in) {
+        this.handleLogin(response)
+      } else {
+        this.handleLogout()
+      }
+    })
+    .catch(error => console.log('api errors:', error))
+  }
+
+  componentDidMount(){
+    return this.props.loginStatus ? this.redirect() : null
+  }
+
+  handleLogin = (data) => {
+    this.setState({
+      isLoggedIn: true,
+      user: data.user
+    })
+  }
+
+  handleLogout = (data) => {
+    this.setState({
+      isLoggedIn: false,
+      user: {}
+    })
+  }
+
+  render(){
+    return(
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    )
+  }
 }
 
 export default App;
