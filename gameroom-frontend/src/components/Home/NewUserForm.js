@@ -8,13 +8,27 @@ const NewUserForm = (props) => {
 
 
     const handleSubmit = (event) => {
+        console.log(email, username, password)
         event.preventDefault()
-        console.log(event)
+        fetch(`http://localhost:3001/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                username: username,
+                password: password
+            })
+        }).then(response => response.json())
+          .then(data => console.log(data))
     }
 
 
     return(
         <div>
+            {console.log(password)}
             <form onSubmit={e => handleSubmit(e)}>
                 <div>
                     <label>Email: </label>
