@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :characters
   end
   
-  post('/login', to: 'sessions#create')
-  get('/logged_in', to: 'sessions#is_logged_in?')
-  delete('/logout', to: 'sessions#destroy')
+  post('/login', to: 'session#create')
+  get('/logged_in', to: 'session#is_logged_in?')
+  delete('/logout', to: 'session#destroy')
 end

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import './HomeStyling/HomePageStyling.scss'
 
-const NewUserForm = (props) => {
+const SignInForm = (props) => {
+
+    const signInProps = props.props;
 
     const [ user, setUser ] = useState({
         email: '',
@@ -9,14 +10,14 @@ const NewUserForm = (props) => {
         password: ''
     }) 
 
-
     const handleSubmit = (event) => {
         event.preventDefault()
-        fetch(`http://localhost:3001/users`, {
+        fetch(`http://localhost:3001/login`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'X-requested-with': 'XmlHttpRequest',
+                'Content-type': 'application/json'
             },
             body: JSON.stringify({
                 email: user.email,
@@ -24,13 +25,12 @@ const NewUserForm = (props) => {
                 password: user.password
             })
         }).then(response => response.json())
-          .then(data => console.log(data))
+          .then(data => signInProps.history.push(`/users/${data.username}`))
     }
-
 
     return(
         <div className="topdiv">
-            <h1>Sign Up</h1>
+            <h1>Sign In</h1>
             <form onSubmit={e => handleSubmit(e)} className="form">
                 <div>
                     <label>Email: </label>
@@ -50,4 +50,4 @@ const NewUserForm = (props) => {
     )
 }
 
-export default NewUserForm
+export default SignInForm;
