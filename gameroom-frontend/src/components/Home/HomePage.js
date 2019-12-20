@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import NewUserForm from './NewUserForm'
+import SignInForm from './SignInForm'
 import './HomeStyling/HomePageStyling.scss'
 
 const HomePage = (props) => {
@@ -15,13 +16,10 @@ const HomePage = (props) => {
                     This is a place where you can manage
                     your characters, campaigns, and your fellow players!
                 </p>
-                <p>
-
-                </p>
-                
             </div>
             <div className="sidebar">
                 <NewUserForm />
+                <SignInForm props={props}/>
             </div>            
         </div>
     )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import HomePage from './components/Home/HomePage'
+import UserHomePage from './components/User/UserHomePage'
 
 class App extends Component {
   constructor(props){
@@ -49,6 +50,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/users/:username" component={UserHomePage} />
           </Switch>
         </BrowserRouter>
       </div>
