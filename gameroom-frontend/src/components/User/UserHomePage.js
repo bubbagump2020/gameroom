@@ -1,14 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './UserStyling/UserHomeStyling.scss'
 
 const UserHomePage = (props) => {
 
+    const [characters, setCharacters] = useState([])
+
     const current_user = props.match.params.username
     const current_url = props.location.pathname
 
+    useEffect(() => {
+        const fetchData =  async () => {
+            const response = await fetch(`http://localhost:3001/users/${current_user}/characters`)
+            const data = await response.json()
+            setCharacters(data)
+        }
+        fetchData()
+    }, [])
+
     return(
         <div className="flex-container">
+            {console.log(characters)}
             <div className="user-header">
                 <h1>Welcome {current_user}</h1>
             </div>

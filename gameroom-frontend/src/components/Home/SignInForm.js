@@ -27,13 +27,7 @@ const SignInForm = (props) => {
         })
 
         const json = await response.json()
-        console.log(json)
-        document.cookie = json.user_id
         signInProps.history.push(`/users/${json.username}`)
-        
-        // .then(response => response.json())
-        // .then(data => console.log(data))
-        //   .then(data => signInProps.history.push(`/users/${data.username}`))
     }
 
     return(
