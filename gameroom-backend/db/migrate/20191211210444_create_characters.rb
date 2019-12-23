@@ -1,7 +1,7 @@
 class CreateCharacters < ActiveRecord::Migration[6.0]
   def change
     create_table :characters do |t|
-      t.belongs_to :user, foreign_key: true
+      t.belongs_to :user, foreign_key: true, type: :bigint
       t.string :character_name
       t.integer :character_level
       t.string :character_race

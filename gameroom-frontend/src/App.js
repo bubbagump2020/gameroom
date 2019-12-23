@@ -51,7 +51,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/users/:username" component={UserHomePage} />
+            <Route exact path="/users/:username" component={UserHomePage} id=":id"/>
             <Route exact path="/users/:username/characters/new" component={NewCharacterForm} />
           </Switch>
         </BrowserRouter>

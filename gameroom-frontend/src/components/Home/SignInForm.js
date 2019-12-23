@@ -10,9 +10,9 @@ const SignInForm = (props) => {
         password: ''
     }) 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        fetch(`http://localhost:3001/login`, {
+        const response = await fetch(`http://localhost:3001/login`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -24,8 +24,10 @@ const SignInForm = (props) => {
                 username: user.username,
                 password: user.password
             })
-        }).then(response => response.json())
-          .then(data => signInProps.history.push(`/users/${data.username}`))
+        })
+
+        const json = await response.json()
+        signInProps.history.push(`/users/${json.username}`)
     }
 
     return(

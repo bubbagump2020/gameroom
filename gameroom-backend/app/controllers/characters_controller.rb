@@ -10,7 +10,15 @@ class CharactersController < ApplicationController
     end
 
     def create
-        respond_with Character.create(character_params)
+        @character = Character.new(character_params)
+        if @character.save
+            render json: { status: :created, character: @character }
+        else
+            render json: {
+                status: 500,
+                errors: @character.errors.full_messages
+            }
+        end
     end
 
     private
