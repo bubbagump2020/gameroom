@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import CharacterContainer from './Characters/CharacterContainer'
 import './UserStyling/UserHomeStyling.scss'
 
 const UserHomePage = (props) => {
@@ -20,7 +21,6 @@ const UserHomePage = (props) => {
 
     return(
         <div className="flex-container">
-            {console.log(characters)}
             <div className="user-header">
                 <h1>Welcome {current_user}</h1>
             </div>
@@ -28,6 +28,7 @@ const UserHomePage = (props) => {
                 <h1>UserContent</h1>
                 <div className="user-characters">
                     <h1>Characters</h1>
+                    <CharacterContainer characters={characters}/>
                 </div>
                 <div>
                     <h1>Campaigns</h1>
