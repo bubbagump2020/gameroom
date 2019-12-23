@@ -5,7 +5,8 @@ class SessionController < ApplicationController
       if( user && user.authenticate(params[:password]))
         session[:user_id] = user.email
         render json: {
-          success: true, 
+          success: true,
+          user_id: user.id,
           username: user.username
         }
       else
